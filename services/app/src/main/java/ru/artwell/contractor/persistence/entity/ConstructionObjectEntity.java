@@ -70,4 +70,36 @@ public class ConstructionObjectEntity {
     public Long getId() {
         return id;
     }
+
+    // ─── Геттеры и сеттеры ───
+
+    public String getObjectCode() { return objectCode; }
+    public void setObjectCode(String objectCode) { this.objectCode = objectCode; }
+
+    public String getObjectName() { return objectName; }
+    public void setObjectName(String objectName) { this.objectName = objectName; }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
+    public UserEntity getCustomer() { return customer; }
+    public void setCustomer(UserEntity customer) { this.customer = customer; }
+
+    public UserEntity getContractor() { return contractor; }
+    public void setContractor(UserEntity contractor) { this.contractor = contractor; }
+
+    public UserEntity getDesigner() { return designer; }
+    public void setDesigner(UserEntity designer) { this.designer = designer; }
+
+    public UserEntity getSupervisor() { return supervisor; }
+    public void setSupervisor(UserEntity supervisor) { this.supervisor = supervisor; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public LocalDate getStartDate() { return startDate; }
+    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
+
+    public LocalDate getEndDate() { return endDate; }
+    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 }

@@ -55,6 +55,75 @@ public class GlobalExceptionHandler {
                 "При загрузке документа произошла ошибка. Проверьте, что файл не повреждён, и попробуйте снова."
         ));
     }
+    // ─── Organization ───────────────────────────────────────────
+
+    @ExceptionHandler(OrganizationService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleOrganizationNotFound(OrganizationService.NotFoundException ex) {
+        return error(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    // ─── User ───────────────────────────────────────────────────
+
+    @ExceptionHandler(UserService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFound(UserService.NotFoundException ex) {
+        return error(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    // ─── Construction Object ────────────────────────────────────
+
+    @ExceptionHandler(ConstructionObjectService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleObjectNotFound(ConstructionObjectService.NotFoundException ex) {
+        return error(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalState(IllegalStateException ex) {
+        return error(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    }
+
+    // ─── Вспомогательные ────────────────────────────────────────
+
+    private ResponseEntity<ErrorResponse> error(HttpStatus status, String message) {
+        return ResponseEntity.status(status).body(new ErrorResponse(message));
+    }
+
+    // ─── Journal Entry ──────────────────────────────────────────
+
+    @ExceptionHandler(JournalEntryService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleJournalEntryNotFound(JournalEntryService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+    // ─── Work Volume ─────────────────────────────────────────────
+
+    @ExceptionHandler(WorkVolumeService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleWorkVolumeNotFound(WorkVolumeService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+    // ─── Permission ──────────────────────────────────────────────
+
+    @ExceptionHandler(RoleDocumentPermissionService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePermissionNotFound(RoleDocumentPermissionService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+    // ─── Audit Log ───────────────────────────────────────────────
+
+    @ExceptionHandler(AuditLogService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleAuditLogNotFound(AuditLogService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+    // ─── Notification ────────────────────────────────────────────
+
+    @ExceptionHandler(NotificationService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotificationNotFound(NotificationService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+
 
     private UploadDocumentResponse uploadErrorEnvelope(String message, DocumentValidationStatus status) {
         return new UploadDocumentResponse(

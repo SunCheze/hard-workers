@@ -61,4 +61,25 @@ public class OrganizationEntity {
     public String getInn() {
         return inn;
     }
+
+    public String getOrgName() { return orgName; }
+    public void setOrgName(String orgName) { this.orgName = orgName; }
+
+    public String getOrgShortName() { return orgShortName; }
+    public void setOrgShortName(String orgShortName) { this.orgShortName = orgShortName; }
+
+    public String getOrgType() { return orgType; }
+    public void setOrgType(String orgType) { this.orgType = orgType; }
+
+    public String getInn() { return inn; }
+    public void setInn(String inn) { this.inn = inn; }
+
+    public String getKpp() { return kpp; }
+    public void setKpp(String kpp) { this.kpp = kpp; }
+
+    public String getLegalAddress() { return legalAddress; }
+    public void setLegalAddress(String legalAddress) { this.legalAddress = legalAddress; }
+
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
 }

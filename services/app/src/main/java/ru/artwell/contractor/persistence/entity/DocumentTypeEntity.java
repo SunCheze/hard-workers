@@ -54,4 +54,13 @@ public class DocumentTypeEntity {
     public String getXsdSchemaPath() {
         return xsdSchemaPath;
     }
+
+    public String getTypeName() { return typeName; }
+    public String getCategory() { return category; }
+    public boolean isActive() { return active; }
+
+    public void setTypeName(String typeName) { this.typeName = typeName; }
+    public void setCategory(String category) { this.category = category; }
+    public void setXsdSchemaPath(String xsdSchemaPath) { this.xsdSchemaPath = xsdSchemaPath; }
+    public void setActive(boolean active) { this.active = active; }
 }

@@ -31,4 +31,21 @@ public class RoleAssignmentHistoryEntity {
 
     protected RoleAssignmentHistoryEntity() {
     }
+
+    //Записывается автоматически при вызове PATCH /api/users/{id}/role.
+    public RoleAssignmentHistoryEntity(UserEntity user, String oldRole,
+                                       String newRole, UserEntity changedBy,
+                                       LocalDateTime changedAt) {
+        this.user = user;
+        this.oldRole = oldRole;
+        this.newRole = newRole;
+        this.changedBy = changedBy;
+        this.changedAt = changedAt;
+    }
+
+    public Long getId() { return id; }
+    public String getOldRole() { return oldRole; }
+    public String getNewRole() { return newRole; }
+    public UserEntity getChangedBy() { return changedBy; }
+    public LocalDateTime getChangedAt() { return changedAt; }
 }
