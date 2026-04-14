@@ -7,8 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.artwell.contractor.dto.AuditLogResponse;
 import ru.artwell.contractor.persistence.entity.AuditLogEntity;
 import ru.artwell.contractor.persistence.repository.AuditLogRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
+import ru.artwell.contractor.config.AppTimeConfiguration;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 /**
  * Сервис для работы с журналом аудита (audit_log).
@@ -23,9 +26,12 @@ import java.time.LocalDateTime;
 @Service
 public class AuditLogService {
 
+    private final ZoneId applicationZoneId;
     private final AuditLogRepository auditLogRepository;
 
-    public AuditLogService(AuditLogRepository auditLogRepository) {
+    public AuditLogService(@Qualifier(AppTimeConfiguration.APPLICATION_ZONE_ID) ZoneId applicationZoneId,
+                           AuditLogRepository auditLogRepository) {
+        this.applicationZoneId = applicationZoneId;
         this.auditLogRepository = auditLogRepository;
     }
 
@@ -93,7 +99,7 @@ public class AuditLogService {
                     String newValue, String ipAddress) {
         AuditLogEntity entry = new AuditLogEntity(
                 userId, username, action, entityType, entityId,
-                oldValue, newValue, ipAddress, LocalDateTime.now()
+                oldValue, newValue, ipAddress, LocalDateTime.now(applicationZoneId)
         );
         auditLogRepository.save(entry);
     }

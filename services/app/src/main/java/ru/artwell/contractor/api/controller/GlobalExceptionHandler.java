@@ -123,7 +123,61 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
     }
 
+    // ─── Journal Entry ──────────────────────────────────────────
 
+    @ExceptionHandler(JournalEntryService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleJournalEntryNotFound(JournalEntryService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+// ─── Work Volume ─────────────────────────────────────────────
+
+    @ExceptionHandler(WorkVolumeService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleWorkVolumeNotFound(WorkVolumeService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+// ─── Permission ──────────────────────────────────────────────
+
+    @ExceptionHandler(RoleDocumentPermissionService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlePermissionNotFound(RoleDocumentPermissionService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+// ─── Audit Log ───────────────────────────────────────────────
+
+    @ExceptionHandler(AuditLogService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleAuditLogNotFound(AuditLogService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+// ─── Notification ────────────────────────────────────────────
+
+    @ExceptionHandler(NotificationService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotificationNotFound(NotificationService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+// ─── User ───────────────────────────────────────────────────
+
+    @ExceptionHandler(UserService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNotFound(UserService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+// ─── Document Type ──────────────────────────────────────────
+
+    @ExceptionHandler(DocumentTypeService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleDocumentTypeNotFound(DocumentTypeService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
+
+// ─── Construction Object ────────────────────────────────────
+
+    @ExceptionHandler(ConstructionObjectService.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleConstructionObjectNotFound(ConstructionObjectService.NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ex.getMessage()));
+    }
 
     private UploadDocumentResponse uploadErrorEnvelope(String message, DocumentValidationStatus status) {
         return new UploadDocumentResponse(

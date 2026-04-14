@@ -82,4 +82,7 @@ public class OrganizationEntity {
 
     public boolean isActive() { return active; }
     public void setActive(boolean active) { this.active = active; }
+    public void setName(String name) { this.name = name; }
+    public void setInn(String inn) { this.inn = inn; }
+    public void setKpp(String kpp) { this.kpp = kpp; }
 }

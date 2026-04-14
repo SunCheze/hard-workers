@@ -84,44 +84,40 @@ public class DocumentEntity {
     public Long getId() {
         return id;
     }
-
     public String getDocumentNumber() {
         return documentNumber;
     }
-
     public DocumentTypeEntity getDocumentType() {
         return documentType;
     }
-
     public int getCurrentVersion() {
         return currentVersion;
+    }
+    public LocalDate getDocumentDate() { return documentDate; }
+    public String getTitle() { return title; }
+    public boolean isLatestVersion() { return latestVersion; }
+    public UserEntity getUploadedBy() { return uploadedBy; }
+    public LocalDateTime getUploadedAt() { return uploadedAt; }
+    public String getStatus() { return status; }
+    public ConstructionObjectEntity getConstructionObject() {
+        return constructionObject;
     }
 
     public void setCurrentVersion(int currentVersion) {
         this.currentVersion = currentVersion;
     }
-
     public void setUploadedAt(LocalDateTime uploadedAt) {
         this.uploadedAt = uploadedAt;
     }
-
     public void setDocumentDate(LocalDate documentDate) {
         this.documentDate = documentDate;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public void setUploadedBy(UserEntity uploadedBy) {
         this.uploadedBy = uploadedBy;
     }
-
-    public ConstructionObjectEntity getConstructionObject() {
-        return constructionObject;
-    }
-
-    public LocalDateTime getUploadedAt() {
-        return uploadedAt;
-    }
+    public void setLatestVersion(boolean v) { this.latestVersion = v; }
+    public void setStatus(String s) { this.status = s; }
 }
