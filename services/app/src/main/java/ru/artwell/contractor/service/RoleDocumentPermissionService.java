@@ -1,4 +1,4 @@
-package services.app.src.main.java.ru.artwell.contractor.service;
+package ru.artwell.contractor.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

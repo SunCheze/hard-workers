@@ -1,4 +1,4 @@
-package services.app.src.main.java.ru.artwell.contractor.persistence.repository;
+package ru.artwell.contractor.persistence.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,9 +11,9 @@ public interface NotificationRepository extends JpaRepository<NotificationEntity
 
     Page<NotificationEntity> findByUser_IdOrderByCreatedAtDesc(Long userId, Pageable pageable);
 
-    Page<NotificationEntity> findByUser_IdAndReadFalseOrderByCreatedAtDesc(Long userId, Pageable pageable);
+    Page<NotificationEntity> findByUser_IdAndReadByUserFalseOrderByCreatedAtDesc(Long userId, Pageable pageable);
 
-    long countByUser_IdAndReadFalse(Long userId);
+    long countByUser_IdAndReadByUserFalse(Long userId);
 
     Optional<NotificationEntity> findByIdAndUser_Id(Long id, Long userId);
 }

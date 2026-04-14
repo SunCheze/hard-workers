@@ -9,14 +9,12 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationResponse {
+public class DocumentAttributeResponse {
     private Long id;
-    private Long userId;
-    private String title;
-    private String message;
-    private String type;
-    private boolean read;
+    private Long documentVersionId;
+    private String attributeName;
+    private String attributeValue;
+    private String attributeType;
     private LocalDateTime createdAt;
-    private LocalDateTime readAt;
+    private LocalDateTime updatedAt;
 }
-

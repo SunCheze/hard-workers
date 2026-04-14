@@ -4,7 +4,16 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "document_extended_attributes")
+@Table(name = "document_extended_attributes",
+        uniqueConstraints = @UniqueConstraint(
+                name = "uk_doc_attr_doc_name",
+                columnNames = {"document_version_id", "attribute_name"}
+        ),
+        indexes = {
+                @Index(name = "idx_doc_attrs_document", columnList = "document_version_id"),
+                @Index(name = "idx_doc_attrs_name", columnList = "attribute_name")
+        }
+)
 public class DocumentExtendedAttributeEntity {
 
     @Id
@@ -21,12 +30,8 @@ public class DocumentExtendedAttributeEntity {
     @Column(name = "attribute_value", columnDefinition = "text")
     private String attributeValue;
 
-    @Column(name = "attribute_type", length = 32)
+    @Column(name = "attribute_type", length = 64)
     private String attributeType;
-
-    @Column(name = "group_name", length = 256)
-    private String groupName;
-
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -34,19 +39,21 @@ public class DocumentExtendedAttributeEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    protected DocumentExtendedAttributeEntity(DocumentEntity document, String attributeName,
-                                              String attributeValue, String attributeType,
-                                              LocalDateTime createdAt) {
-        this.document = document;
+    protected DocumentExtendedAttributeEntity() {
+    }
+
+    public DocumentExtendedAttributeEntity(DocumentVersionEntity documentVersion, String attributeName,
+                                           String attributeValue, String attributeType,
+                                           LocalDateTime createdAt) {
+        this.documentVersion = documentVersion;
         this.attributeName = attributeName;
         this.attributeValue = attributeValue;
         this.attributeType = attributeType;
         this.createdAt = createdAt;
     }
-    // ─── Геттеры и сеттеры ───
 
     public Long getId() { return id; }
-    public DocumentEntity getDocument() { return document; }
+    public DocumentVersionEntity getDocumentVersion() { return documentVersion; }
     public String getAttributeName() { return attributeName; }
     public String getAttributeValue() { return attributeValue; }
     public String getAttributeType() { return attributeType; }
@@ -64,5 +71,4 @@ public class DocumentExtendedAttributeEntity {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 }

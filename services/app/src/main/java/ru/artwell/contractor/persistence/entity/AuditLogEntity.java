@@ -62,15 +62,16 @@ public class AuditLogEntity {
         this.createdAt = createdAt;
     }
 
+
     public Long getId() { return id; }
-    public Long getUserId() { return userId; }
+    public UserEntity getUser() { return user; }
+    public Long getUserId() { return user != null ? user.getId() : null; }
     public String getUsername() { return username; }
-    public String getAction() { return action; }
+    public String getAction() { return actionType; }
     public String getEntityType() { return entityType; }
     public Long getEntityId() { return entityId; }
-    public String getOldValue() { return oldValue; }
-    public String getNewValue() { return newValue; }
+    public String getOldValue() { return null; }
+    public String getNewValue() { return null; }
     public String getIpAddress() { return ipAddress; }
-    public LocalDateTime getTimestamp() { return timestamp; }
-}
+    public LocalDateTime getTimestamp() { return createdAt; }
 }

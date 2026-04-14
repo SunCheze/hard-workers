@@ -1,4 +1,4 @@
-package services.app.src.main.java.ru.artwell.contractor.service;
+package ru.artwell.contractor.service;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -58,16 +58,15 @@ public class NotificationService {
     @Transactional(readOnly = true)
     public Page<NotificationResponse> listUnreadByUser(Long userId, Pageable pageable) {
         findUserOrThrow(userId);
-        return notificationRepository.findByUser_IdAndReadFalseOrderByCreatedAtDesc(userId, pageable)
+        return notificationRepository.findByUser_IdAndReadByUserFalseOrderByCreatedAtDesc(userId, pageable)
                 .map(this::toResponse);
     }
 
     /** Количество непрочитанных уведомлений */
     @Transactional(readOnly = true)
     public long countUnread(Long userId) {
-        return notificationRepository.countByUser_IdAndReadFalse(userId);
+        return notificationRepository.countByUser_IdAndReadByUserFalse(userId);
     }
-
     // ─── Создание ───────────────────────────────────────────────
 
     /** Создать уведомление для пользователя */
@@ -94,8 +93,8 @@ public class NotificationService {
         NotificationEntity entity = notificationRepository.findByIdAndUser_Id(notificationId, userId)
                 .orElseThrow(() -> new NotFoundException("Notification not found: " + notificationId));
 
-        if (!entity.isRead()) {
-            entity.setRead(true);
+        if (!entity.isReadByUser()) {
+            entity.setReadByUser(true);
             entity.setReadAt(LocalDateTime.now(applicationZoneId));
             notificationRepository.save(entity);
         }
@@ -107,10 +106,10 @@ public class NotificationService {
     public long markAllAsRead(Long userId) {
         findUserOrThrow(userId);
         LocalDateTime now = LocalDateTime.now(applicationZoneId);
-        var unread = notificationRepository.findByUser_IdAndReadFalseOrderByCreatedAtDesc(userId, Pageable.unpaged());
+        var unread = notificationRepository.findByUser_IdAndReadByUserFalseOrderByCreatedAtDesc(userId, Pageable.unpaged());
         long count = 0;
         for (NotificationEntity entity : unread) {
-            entity.setRead(true);
+            entity.setReadByUser(true);
             entity.setReadAt(now);
             notificationRepository.save(entity);
             count++;
@@ -128,7 +127,7 @@ public class NotificationService {
     private NotificationResponse toResponse(NotificationEntity e) {
         return new NotificationResponse(
                 e.getId(), e.getUser().getId(), e.getTitle(), e.getMessage(),
-                e.getType(), e.isRead(), e.getCreatedAt(), e.getReadAt()
+                e.getType(), e.isReadByUser(), e.getCreatedAt(), e.getReadAt()
         );
     }
 

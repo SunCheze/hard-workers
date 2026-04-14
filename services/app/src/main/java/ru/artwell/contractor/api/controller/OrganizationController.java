@@ -39,7 +39,7 @@ public class OrganizationController {
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
-        return ResponseEntity.ok(organizationService.list(name, PageRequest.of(page, size)));
+        return ResponseEntity.ok(organizationService.list(null, name, null, PageRequest.of(page, size)));
     }
 
     @Operation(summary = "Организация по ID")

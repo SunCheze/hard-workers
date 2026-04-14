@@ -49,21 +49,18 @@ public class DocumentParticipantEntity {
     protected DocumentParticipantEntity() {
     }
 
-    public DocumentParticipantEntity(DocumentEntity document, UserEntity user,
+    public DocumentParticipantEntity(DocumentVersionEntity documentVersion, UserEntity user,
                                      String participantRole, LocalDateTime assignedAt) {
-        this.document = document;
+        this.documentVersion = documentVersion;
         this.user = user;
         this.participantRole = participantRole;
         this.assignedAt = assignedAt;
     }
 
     // ─── Геттеры ───
-
     public Long getId() { return id; }
-    public DocumentEntity getDocument() { return document; }
+    public DocumentVersionEntity getDocumentVersion() { return documentVersion; }
     public UserEntity getUser() { return user; }
     public String getParticipantRole() { return participantRole; }
     public LocalDateTime getAssignedAt() { return assignedAt; }
-}
-
 }

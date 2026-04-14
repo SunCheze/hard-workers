@@ -31,6 +31,35 @@ public class NotificationEntity {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "read_at")
+    private LocalDateTime readAt;
+
     protected NotificationEntity() {
     }
+
+    public NotificationEntity(UserEntity user, String title, String message,
+                              String notificationType, boolean readByUser,
+                              LocalDateTime createdAt, LocalDateTime readAt) {
+        this.user = user;
+        this.title = title;
+        this.message = message;
+        this.notificationType = notificationType;
+        this.readByUser = readByUser;
+        this.createdAt = createdAt;
+        this.readAt = readAt;
+    }
+
+    public Long getId() { return id; }
+    public UserEntity getUser() { return user; }
+    public String getType() { return notificationType; }
+    public String getTitle() { return title; }
+    public String getMessage() { return message; }
+    public boolean isRead() { return readByUser; }
+    public boolean isReadByUser() { return readByUser; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public LocalDateTime getReadAt() { return readAt; }
+
+    public void setRead(boolean read) { this.readByUser = read; }
+    public void setReadByUser(boolean readByUser) { this.readByUser = readByUser; }
+    public void setReadAt(LocalDateTime readAt) { this.readAt = readAt; }
 }

@@ -3,6 +3,7 @@ package ru.artwell.contractor.persistence.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "journal_entries")
@@ -11,22 +12,6 @@ public class JournalEntryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "document_version_id", nullable = false)
-    private DocumentVersionEntity documentVersion;
-
-    @Column(name = "entry_number")
-    private Integer entryNumber;
-
-    @Column(name = "entry_date")
-    private LocalDate entryDate;
-
-    @Column(name = "work_description", columnDefinition = "text")
-    private String workDescription;
-
-    @Column(name = "performer_name", length = 512)
-    private String performerName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "document_id", nullable = false)
@@ -48,8 +33,11 @@ public class JournalEntryEntity {
     @Column(name = "journal_type", length = 64)
     private String journalType;
 
-    protected JournalEntryEntity(DocumentEntity document, String action, String comment,
-                                 UserEntity performedBy, LocalDateTime performedAt, String journalType) {
+    protected JournalEntryEntity() {
+    }
+
+    public JournalEntryEntity(DocumentEntity document, String action, String comment,
+                              UserEntity performedBy, LocalDateTime performedAt, String journalType) {
         this.document = document;
         this.action = action;
         this.comment = comment;

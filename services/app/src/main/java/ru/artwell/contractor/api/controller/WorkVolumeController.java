@@ -1,4 +1,4 @@
-package services.app.src.main.java.ru.artwell.contractor.api.controller;
+package ru.artwell.contractor.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

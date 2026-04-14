@@ -4,10 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ru.artwell.contractor.persistence.entity.DocumentTypeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import ru.artwell.contractor.persistence.entity.DocumentTypeEntity;
 
 import java.util.Optional;
 

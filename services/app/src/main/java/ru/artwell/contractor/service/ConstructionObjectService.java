@@ -86,7 +86,7 @@ public class ConstructionObjectService {
      * Фильтры: status, search (по коду или названию).
      */
     @Transactional(readOnly = true)
-    public Page<ConstructionObjectResponse> list(String status, String search, Pageable pageable) {
+    public Page<ConstructionObjectResponse> list(String status, String search, Boolean isActive, Pageable pageable) {
         Page<ConstructionObjectEntity> page;
 
         if (search != null && !search.isBlank()) {

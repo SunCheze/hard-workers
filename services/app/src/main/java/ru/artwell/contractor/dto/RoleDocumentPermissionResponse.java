@@ -1,4 +1,4 @@
-package services.app.src.main.java.ru.artwell.contractor.dto;
+package ru.artwell.contractor.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
