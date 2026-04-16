@@ -111,4 +111,29 @@ public class DocumentVersionEntity {
     public DocumentVersionEntity getPreviousVersion() {
         return previousVersion;
     }
+
+
+    public String getXmlFileName() {
+        return xmlFileName;
+    }
+
+    public void setXmlFileName(String xmlFileName) {
+        this.xmlFileName = xmlFileName;
+    }
+
+    public Long getXmlFileSize() {
+        return xmlFileSize;
+    }
+
+    public void setXmlFileSize(Long xmlFileSize) {
+        this.xmlFileSize = xmlFileSize;
+    }
+
+    public String getUploadedBy() {
+        return uploadedBy;
+    }
+
+    public void setUploadedBy(String uploadedBy) {
+        this.uploadedBy = uploadedBy;
+    }
 }

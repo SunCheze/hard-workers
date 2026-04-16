@@ -46,6 +46,9 @@ public class ConstructionObjectEntity {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @Column(name = "is_active")
+    private Boolean active = true;
+
     protected ConstructionObjectEntity() {
     }
 
@@ -102,4 +105,8 @@ public class ConstructionObjectEntity {
 
     public LocalDate getEndDate() { return endDate; }
     public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
 }
+

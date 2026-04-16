@@ -74,10 +74,7 @@ public class XsdCatalogService {
         return mapping;
     }
 
-    /**
-     * Если в БД/памяти нет записи (например, устаревшая {@code xsd_definitions}), ищем среди
-     * {@code validation-files/**/idActs/*.xsd} на classpath файл с тем же targetNamespace и корневым элементом.
-     */
+
     private DocumentTypeMapping resolveByScanningIdActsSchemas(XmlMetadataExtractor.RootQName rootQName) throws IOException {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Resource[] resources = resolver.getResources("classpath*:/validation-files/**/idActs/*.xsd");

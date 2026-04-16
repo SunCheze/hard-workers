@@ -48,8 +48,9 @@ public class ConstructionObjectController {
             @ApiResponse(responseCode = "404", description = "Объект не найден")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<ConstructionObjectResponse> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(constructionObjectService.getById(id));
+    public ResponseEntity<ConstructionObjectDetailResponse> getById(@PathVariable Long id) {
+        ConstructionObjectDetailResponse obj = constructionObjectService.getById(id);
+        return ResponseEntity.ok(obj);
     }
 
     @Operation(summary = "Создать объект строительства")
@@ -58,7 +59,7 @@ public class ConstructionObjectController {
             @ApiResponse(responseCode = "400", description = "Ошибка валидации или дубликат кода")
     })
     @PostMapping
-    public ResponseEntity<ConstructionObjectResponse> create(@Valid @RequestBody ConstructionObjectRequest request) {
+    public ResponseEntity<ConstructionObjectDetailResponse> create(@Valid @RequestBody ConstructionObjectDetailResponse request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(constructionObjectService.create(request));
     }
 
@@ -68,8 +69,8 @@ public class ConstructionObjectController {
             @ApiResponse(responseCode = "404", description = "Объект не найден")
     })
     @PutMapping("/{id}")
-    public ResponseEntity<ConstructionObjectResponse> update(@PathVariable Long id,
-                                                             @Valid @RequestBody ConstructionObjectRequest request) {
+    public ResponseEntity<ConstructionObjectDetailResponse> update(@PathVariable Long id,
+                                                             @Valid @RequestBody ConstructionObjectDetailResponse request) {
         return ResponseEntity.ok(constructionObjectService.update(id, request));
     }
 

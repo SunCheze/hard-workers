@@ -76,6 +76,8 @@ public class ConstructionObjectService {
 
     // ─── Чтение ─────────────────────────────────────────────────
 
+
+
     @Transactional(readOnly = true)
     public ConstructionObjectDetailResponse getById(Long id) {
         return toDetailResponse(findOrThrow(id));
@@ -98,6 +100,14 @@ public class ConstructionObjectService {
         }
 
         return page.map(this::toListResponse);
+    }
+
+    @Transactional
+    public void deactivate(Long id) {
+        ConstructionObjectEntity entity = constructionObjectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Construction object not found with id: " + id));
+        entity.setActive(false);
+        constructionObjectRepository.save(entity);
     }
 
     // ─── Обновление ─────────────────────────────────────────────

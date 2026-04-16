@@ -84,3 +84,4 @@ public class WorkVolumeEntity {
     public void setApproved(boolean approved) { this.approved = approved; }
     public void setApprovedBy(UserEntity approvedBy) { this.approvedBy = approvedBy; }
     public void setApprovedAt(LocalDateTime approvedAt) { this.approvedAt = approvedAt; }
+}
