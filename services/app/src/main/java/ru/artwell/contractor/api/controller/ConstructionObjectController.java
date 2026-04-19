@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.artwell.contractor.dto.ConstructionObjectDetailResponse;
 import ru.artwell.contractor.dto.ConstructionObjectRequest;
 import ru.artwell.contractor.dto.ConstructionObjectResponse;
 import ru.artwell.contractor.service.ConstructionObjectService;
@@ -59,7 +60,7 @@ public class ConstructionObjectController {
             @ApiResponse(responseCode = "400", description = "Ошибка валидации или дубликат кода")
     })
     @PostMapping
-    public ResponseEntity<ConstructionObjectDetailResponse> create(@Valid @RequestBody ConstructionObjectDetailResponse request) {
+    public ResponseEntity<ConstructionObjectDetailResponse> create(@Valid @RequestBody ConstructionObjectRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(constructionObjectService.create(request));
     }
 
@@ -70,7 +71,7 @@ public class ConstructionObjectController {
     })
     @PutMapping("/{id}")
     public ResponseEntity<ConstructionObjectDetailResponse> update(@PathVariable Long id,
-                                                             @Valid @RequestBody ConstructionObjectDetailResponse request) {
+                                                             @Valid @RequestBody ConstructionObjectRequest request) {
         return ResponseEntity.ok(constructionObjectService.update(id, request));
     }
 

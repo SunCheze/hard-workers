@@ -129,11 +129,11 @@ public class DocumentVersionEntity {
         this.xmlFileSize = xmlFileSize;
     }
 
-    public String getUploadedBy() {
+    public UserEntity getUploadedBy() {
         return uploadedBy;
     }
 
-    public void setUploadedBy(String uploadedBy) {
+    public void setUploadedBy(UserEntity uploadedBy) {
         this.uploadedBy = uploadedBy;
     }
 }

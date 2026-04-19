@@ -104,10 +104,10 @@ public class ConstructionObjectService {
 
     @Transactional
     public void deactivate(Long id) {
-        ConstructionObjectEntity entity = constructionObjectRepository.findById(id)
+        ConstructionObjectEntity entity = objectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Construction object not found with id: " + id));
         entity.setActive(false);
-        constructionObjectRepository.save(entity);
+        objectRepository.save(entity);
     }
 
     // ─── Обновление ─────────────────────────────────────────────
